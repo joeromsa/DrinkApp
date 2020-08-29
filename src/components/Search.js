@@ -6,18 +6,34 @@ import List from './List'
 
 const Search = () => {
     const [searchTerm, setSearchTerm] = useState('')
+    const [searchResults, setSearchResults] = useState([])
     const [drinks, setDrinks] = useState([])
 
     useEffect(() => {
-        axios.get(`https://www.thecocktaildb.com/api/json/v1/1/search.php?s=${searchTerm}`)
-        .then(response => {
-            setDrinks(response.data.drinks)
-        })
+        if (searchTerm.length === 1) 
+        {
+            axios.get(`https://www.thecocktaildb.com/api/json/v1/1/search.php?f=${searchTerm}`)
+            .then(response => {
+                setDrinks(response.data.drinks)
+            }) 
+        }
     }, [searchTerm])
 
     const handleChange = event => {
         setSearchTerm(event.target.value)
     } 
+
+    useEffect(() => {
+        const results = drinks.filter(drink => 
+            drink.strDrink.toLowerCase().includes(searchTerm))
+            setSearchResults(results)
+    }, [searchTerm, drinks])
+
+    useEffect(() => {
+        if (searchTerm.length === 0) {
+            setSearchResults([])
+        }
+    }, [searchTerm])
 
     return (
         <div>
@@ -25,7 +41,7 @@ const Search = () => {
             <div>
                 <input value={searchTerm} onChange={handleChange} />
             </div>
-            <List results={drinks} />
+            <List results={searchResults} />
         </div>
     )
 }
