@@ -10,9 +10,11 @@ const Ingredients = ({item}) => {
         for (let [key, value] of Object.entries(item)) {
             if (key.includes("strIngredient") && (value !== null && value !== ''))
             {
+                if (!ingredients.includes(value)) {
                 ingredients.push(value)
+                }
             }
-            else if (key.includes("strMeasure") && (value !== null && value !== ''))
+            else if (key.includes("strMeasure") && (value !== null && value !== '' && !value.includes(',')))
             {
                 measurements.push(value)
             }
@@ -25,6 +27,11 @@ const Ingredients = ({item}) => {
 
     const combineArrs = (ar1, ar2) => {
         ar1.forEach((element, index) => {
+            if (typeof ar2[index] === 'undefined')
+            {
+                ar2[index] = ''
+            }
+
             ar1[index] = ar2[index] + ' ' + element
         });
 
