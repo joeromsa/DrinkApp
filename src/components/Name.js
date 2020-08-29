@@ -7,7 +7,7 @@ const Name = ({item}) => {
         <div>
             <p>{item.strDrink}</p>
             <div><Ingredients item={item} /></div>
-            <p>{item.strInstructions}</p>
+            <p>{item.strInstructions} Serve in a {item.strGlass}</p>
             <img src={item.strDrinkThumb} alt={item.strDrink} />
         </div>
     )
