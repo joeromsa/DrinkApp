@@ -9,6 +9,7 @@ const Menu = () => {
     return (
         <div>
             <Link style={padding} to="/">Home</Link>
+            <Link style={padding} to="/myDrinks">My Drinks</Link>
             <Link style={padding} to="/about">About</Link>
         </div>
     )

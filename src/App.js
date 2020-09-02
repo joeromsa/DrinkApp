@@ -5,6 +5,7 @@ import {BrowserRouter as Router, Switch, Route, Link, useParams, useHistory} fro
 import About from './components/About'
 import Menu from './components/Menu'
 import Search from './components/Search'
+import MyDrinks from './components/MyDrinks'
 
 const App = () => {
     return (
@@ -15,6 +16,9 @@ const App = () => {
                 <Switch>
                     <Route path="/about">
                         <About />
+                    </Route>
+                    <Route path="/myDrinks">
+                        <MyDrinks />
                     </Route>
                     <Route path="/">
                         <Search />

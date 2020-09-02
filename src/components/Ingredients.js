@@ -1,4 +1,5 @@
 import React from 'react'
+import combineArrs from '../utils/arrayHandle'
 
 const Ingredients = ({item}) => {
     
@@ -23,19 +24,6 @@ const Ingredients = ({item}) => {
         combineArrs(ingredients, measurements)
 
         return ingredients
-    }
-
-    const combineArrs = (ar1, ar2) => {
-        ar1.forEach((element, index) => {
-            if (typeof ar2[index] === 'undefined')
-            {
-                ar2[index] = ''
-            }
-
-            ar1[index] = ar2[index] + ' ' + element
-        });
-
-        return ar1
     }
 
     let ingAndMes = addIng()
