@@ -24,6 +24,10 @@ const DrinkForm = ({createDrink}) => {
         setIngredients([...ingredients, {...blankIng}])
     }
 
+    const removeEntry = (sent) => {
+        setIngredients(ingredients.filter((ing, index) => index !== sent))
+    }
+
     const addDrink = (event) => {
         event.preventDefault()
         createDrink({
@@ -75,6 +79,7 @@ const DrinkForm = ({createDrink}) => {
                                     value={ingredients[idx].ingredient}
                                     onChange={handleIngChange}
                                 />
+                                <input type="button" value="Remove" onClick={() => removeEntry(idx)}/>
                             </div>
                         )
                     })
