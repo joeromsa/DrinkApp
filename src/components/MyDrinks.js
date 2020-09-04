@@ -5,6 +5,8 @@ import drinkService from '../services/drinksServ'
 
 const MyDrinks = () => {
     const [drinks, setDrinks] = useState([])
+    const [showAdd, setShowAdd] = useState(false)
+    const [buttonText, setButtonText] = useState('Add New')
 
     useEffect(() => {
         drinkService.getAll().then(drinks => setDrinks(drinks))
@@ -30,15 +32,27 @@ const MyDrinks = () => {
         }
     }
 
+    const changeView = (event) => {
+        event.preventDefault()
+        setShowAdd(!showAdd)
+        if (buttonText === 'Add New') {
+            setButtonText('Cancel')
+        }
+        else {
+            setButtonText('Add New')
+        }
+    }
+
     return (
         <div>
             <div>
                 <h1>My Drinks</h1>
+                <input type="button" value={buttonText} onClick={changeView} />
+                {showAdd && <DrinkForm createDrink={addDrink}/>}
                 {drinks.map(drink => 
                     <Drink key={drink.id} drink={drink} removeDrink={removeDrink}/> 
                 )}
             </div>
-            <DrinkForm createDrink={addDrink}/>
         </div>
     )
 }

@@ -45,7 +45,7 @@ const DrinkForm = ({createDrink}) => {
         createDrink(fd)
         setIngredients([ {...blankIng} ])
         setDrink({ name: '',  glassware: '', description: '',})
-        setFile(null)
+        setFile('')
     }
 
 
