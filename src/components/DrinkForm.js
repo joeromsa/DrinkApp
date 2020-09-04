@@ -7,6 +7,7 @@ const DrinkForm = ({createDrink}) => {
     const [drink, setDrink] = useState({ name: '',  glassware: '', description: '',})
     const blankIng = {quantity: '', ingredient: ''}
     const [ingredients, setIngredients] = useState([ {...blankIng} ])
+    const [file, setFile] = useState(null)
     
 
     const handleDrinkChange = (e) => setDrink({
@@ -28,17 +29,23 @@ const DrinkForm = ({createDrink}) => {
         setIngredients(ingredients.filter((ing, index) => index !== sent))
     }
 
+    const fileSelctedHandler = (event) =>  {
+        const fileIn = event.target.files[0]
+        setFile(fileIn)
+    }
+
     const addDrink = (event) => {
         event.preventDefault()
-        createDrink({
-            name: drink.name[0],
-            glassware: drink.glassware[0],
-            description: drink.description[0],
-            ingredients: ingredients,
-            id: Math.random()   // wont be worry with db
-        })
+        const fd = new FormData()
+        fd.append('name', drink.name[0])
+        fd.append('glassware', drink.glassware[0])
+        fd.append('description', drink.description[0])
+        fd.append('ingredients', JSON.stringify(ingredients))
+        fd.append('drinkImage', file, file.name)
+        createDrink(fd)
         setIngredients([ {...blankIng} ])
         setDrink({ name: '',  glassware: '', description: '',})
+        setFile(null)
     }
 
 
@@ -52,6 +59,8 @@ const DrinkForm = ({createDrink}) => {
                 <input type="text" name="glassware" id="glassware" value={drink.glassware} onChange={handleDrinkChange}/>
                 <label htmlFor="description">Description</label>
                 <input type="text" name="description" id="description" value={drink.description} onChange={handleDrinkChange} />
+                <label htmlFor="drinkImage">Drink Image</label>
+                <input type="file" name="drinkImage" id="drinkImage" onChange={fileSelctedHandler}/>
                 <input type="button" value="Add New Ingredient" onClick={addIng}/>
                 {
                     ingredients.map((val, idx) => {
