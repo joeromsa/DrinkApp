@@ -20,12 +20,22 @@ const MyDrinks = () => {
         }
     }
 
+    const removeDrink = async (drinkObject) => {
+        try {
+            await drinkService.remove(drinkObject.id)
+            setDrinks(drinks.filter(drink => drink.id !== drinkObject.id))
+        }
+        catch(exception) {
+            console.log(exception)
+        }
+    }
+
     return (
         <div>
             <div>
                 <h1>My Drinks</h1>
                 {drinks.map(drink => 
-                    <Drink key={drink.id} drink={drink} /> 
+                    <Drink key={drink.id} drink={drink} removeDrink={removeDrink}/> 
                 )}
             </div>
             <DrinkForm createDrink={addDrink}/>
