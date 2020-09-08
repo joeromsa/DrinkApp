@@ -35,8 +35,6 @@ const Search = () => {
         }
     }, [searchTerm])
 
-    console.log(searchTerm.length)
-
     return (
         <div>
             <h1>Search Drinks</h1>
