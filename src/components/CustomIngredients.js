@@ -1,15 +1,35 @@
 import React from 'react'
-//import combineArrs from '../utils/arrayHandle'
+
+//css
+import List from '@material-ui/core/List'
+import ListItem from '@material-ui/core/ListItem'
+import {makeStyles} from '@material-ui/core'
+
+const useStyles = makeStyles((theme) => ({
+    list: {
+        display: 'flex',
+        justifyContent: 'center'
+    }
+  }))
 
 const CustomIngredients = ({item}) => {
-    //const ing = combineArrs(item.ingredients, item.quantity)
+    const classes = useStyles()
+
     return (
-        <ul>{item.ingredients.map(ingredient => 
-            <li key={ingredient.ingredient}>
+        <List>{item.ingredients.map(ingredient =>
+            <ListItem className={classes.list} key={ingredient.ingredient}>
                 {ingredient.quantity} {ingredient.ingredient}
-            </li>)}
-        </ul>
+            </ListItem>)}
+        </List>
     )
+
+    // return (
+    //     <ul>{item.ingredients.map(ingredient => 
+    //         <li key={ingredient.ingredient}>
+    //             {ingredient.quantity} {ingredient.ingredient}
+    //         </li>)}
+    //     </ul>
+    // )
 }
 
 export default CustomIngredients

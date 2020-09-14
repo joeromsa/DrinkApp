@@ -1,8 +1,21 @@
 import React from 'react'
 import combineArrs from '../utils/arrayHandle'
 
+//css
+import List from '@material-ui/core/List'
+import ListItem from '@material-ui/core/ListItem'
+import {makeStyles} from '@material-ui/core'
+
+const useStyles = makeStyles((theme) => ({
+    list: {
+        display: 'flex',
+        justifyContent: 'center'
+    }
+  }))
+
 const Ingredients = ({item}) => {
     
+    const classes = useStyles()
 
     const addIng = () => {
         let ingredients = []
@@ -29,12 +42,20 @@ const Ingredients = ({item}) => {
     let ingAndMes = addIng()
 
     return (
-        <ul>{ingAndMes.map(ingredient => 
-            <li key={ingredient}>
+        <List>{ingAndMes.map(ingredient =>
+            <ListItem className={classes.list} key={ingredient}>
                 {ingredient}
-            </li>)}
-        </ul>
+            </ListItem>)}
+        </List>
     )
+
+    // return (
+    //     <ul>{ingAndMes.map(ingredient => 
+    //         <li key={ingredient}>
+    //             {ingredient}
+    //         </li>)}
+    //     </ul>
+    // )
 }
 
 export default Ingredients

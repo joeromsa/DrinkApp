@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import {BrowserRouter as Router, Switch, Route, Link, useParams, useHistory} from 'react-router-dom'
+import {BrowserRouter as Router, Switch, Route} from 'react-router-dom'
 
 //components
 import About from './components/About'
@@ -10,10 +10,7 @@ import Login from './components/Login'
 import Signup from './components/Signup'
 import drinksService from './services/drinksServ'
 
-//css
 import './css/app.css'
-
-
 
 const App = () => {
 
@@ -29,8 +26,7 @@ const App = () => {
     }, [])
 
     return (
-        <div>
-            <h1>Drink App</h1>
+        <div className="App">
             <Router>
                 <Menu auth={user} setAuth={setUser}/>
                 <Switch>
@@ -40,7 +36,7 @@ const App = () => {
                     {user && <Route path="/myDrinks">
                         <MyDrinks />
                     </Route>}
-                    {!user && <Route path="/login">
+                    {!user && <Route path="/signin">
                         <Login setUser={setUser}/>
                     </Route>}
                     {!user && <Route path="/signup">

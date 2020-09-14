@@ -3,11 +3,42 @@ import userService from '../services/userServ'
 import loginService from '../services/loginServ'
 import drinksService from '../services/drinksServ'
 
+// style
+import { makeStyles } from '@material-ui/core/styles'
+import Container from '@material-ui/core/Container'
+import { CssBaseline, Typography, Button } from '@material-ui/core'
+import Avatar from '@material-ui/core/Avatar'
+import TextField from '@material-ui/core/TextField'
+import AccountCircleOutlined from '@material-ui/icons/AccountCircleOutlined'
+import Link from '@material-ui/core/Link'
+
+const useStyles = makeStyles((theme) => ({
+    paper: {
+      marginTop: theme.spacing(8),
+      display: 'flex',
+      flexDirection: 'column',
+      alignItems: 'center',
+    },
+    avatar: {
+      margin: theme.spacing(1),
+      backgroundColor: theme.palette.secondary.main,
+    },
+    form: {
+      width: '100%', // Fix IE 11 issue.
+      marginTop: theme.spacing(1),
+    },
+    submit: {
+      margin: theme.spacing(3, 0, 2),
+    },
+  }))
+
 const Signup = ({setUser}) => {
 
     const [username, setUsername] = useState('')
     const [password, setPassword] = useState('')
     const [name, setName] = useState('')
+
+    const classes = useStyles()
 
     const handleSignUp = async (event) => {
         event.preventDefault()
@@ -28,25 +59,94 @@ const Signup = ({setUser}) => {
     }
 
     return (
-        <div>
-            <h1>Sign Up</h1>
-            <form onSubmit={handleSignUp}>
-                <div>
-                    Name
-                    <input type="text" value={name} name="Name" onChange={({target}) => setName(target.value)}/>
-                </div>
-                <div>
-                    Username
-                    <input type="text" value={username} name="Username" onChange={({target}) => setUsername(target.value)}/>
-                </div>
-                <div>
-                    Password
-                    <input type="password" value={password} name="Password" onChange={({target}) => setPassword(target.value)}/>
-                </div>
-                <button type="sumbit">login</button>
-            </form>
-        </div>
+        <Container component="main" maxWidth="xs">
+            <CssBaseline />
+            <div className={classes.paper}>
+                <Avatar className={classes.avatar} >
+                    <AccountCircleOutlined />
+                </Avatar>
+                <Typography component="h1" variant="h5">
+                    Sign Up
+                </Typography>
+                <form className={classes.form} noValidate onSubmit={handleSignUp}>
+                <TextField
+                        variant="outlined"
+                        margin="normal"
+                        required
+                        fullWidth
+                        id="name"
+                        label="Name"
+                        name="name"
+                        autoComplete="name"
+                        autoFocus
+                        value={name}
+                        onChange={({target}) => setName(target.value)}
+                    />
+                    <TextField
+                        variant="outlined"
+                        margin="normal"
+                        required
+                        fullWidth
+                        id="username"
+                        label="Username"
+                        name="username"
+                        autoComplete="username"
+                        autoFocus
+                        value={username}
+                        onChange={({target}) => setUsername(target.value)}
+                    />
+                    <TextField
+                        variant="outlined"
+                        margin="normal"
+                        required
+                        fullWidth
+                        name="password"
+                        label="Password"
+                        type="password"
+                        id="password"
+                        autoComplete="current-password"
+                        value={password}
+                        onChange={({target}) => setPassword(target.value)}
+                    />
+                    <Button
+                        type="submit"
+                        fullWidth
+                        variant="contained"
+                        color="primary"
+                        className={classes.submit}
+                    >
+                        Sign Up
+                    </Button>
+                    <Typography variant="body2" align="center">
+                        <Link href="/signin" >
+                            {"Already have an account? Sign In"}
+                        </Link>
+                    </Typography>
+                </form>
+            </div>
+        </Container>
     )
-}
+
+    // return (
+    //     <div>
+    //         <h1>Sign Up</h1>
+    //         <form onSubmit={handleSignUp}>
+    //             <div>
+    //                 Name
+    //                 <input type="text" value={name} name="Name" onChange={({target}) => setName(target.value)}/>
+    //             </div>
+    //             <div>
+    //                 Username
+    //                 <input type="text" value={username} name="Username" onChange={({target}) => setUsername(target.value)}/>
+    //             </div>
+    //             <div>
+    //                 Password
+    //                 <input type="password" value={password} name="Password" onChange={({target}) => setPassword(target.value)}/>
+    //             </div>
+    //             <button type="sumbit">login</button>
+    //         </form>
+    //     </div>
+    // )
+    }
 
 export default Signup
