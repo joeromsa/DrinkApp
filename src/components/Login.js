@@ -1,3 +1,8 @@
+/*
+* Login component logs the user in.
+* setUser- object containing user details.
+*/
+
 import React, { useState } from 'react'
 import loginService from '../services/loginServ'
 import drinksService from '../services/drinksServ'
@@ -107,23 +112,6 @@ const Login = ({setUser}) => {
             </div>
         </Container>
     )
-
-//     return (
-//         <div>
-//             <h1>Login</h1>
-//             <form onSubmit={handleLogin}>
-//                 <div>
-//                     username
-//                     <input type="text" value={username} name="Username" onChange={({target}) => setUsername(target.value)}/>
-//                 </div>
-//                 <div>
-//                     password
-//                     <input type="password" value={password} name="Password" onChange={({target}) => setPassword(target.value)}/>
-//                 </div>
-//                 <button type="sumbit">login</button>
-//             </form>
-//         </div>
-//     )
 }
 
 export default Login

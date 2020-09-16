@@ -1,3 +1,7 @@
+/*
+* About component holds information about the site.
+*/
+
 import React from 'react'
 import {makeStyles} from '@material-ui/core/styles'
 
@@ -60,29 +64,6 @@ const About = () => {
             </Typography>
         </Container>
     )
-
-    // return (
-    //     <div>
-            
-    //         <p className={classes.title}>About Drink App</p>
-    //         <p className={classes.body}>Drink App is dedicated to good drinks and good times with family and friends. Our goal is give 
-    //             anyone the opportunity to make their favorite drinks from the comfort of their home. We also think
-    //             doing things your own way is import too, so we also have provided the opportunity to create your own 
-    //             original recipes, and share them with the world. 
-    //         </p>
-    //         {/* /* <p className={classes.subTitle}>Meet the team</p>
-    //         <img src={require('../assets/joedrink.jpg')} alt="joe" className={classes.image2} />
-    //         <p className={classes.subTitle}>Joe Romsa</p>
-    //         <p className={classes.subTitle}>Creator of Drink App</p>
-    //         <p className={classes.body}>Joe has spent the last few years after turning twenty one exploring the world of cocktails. From this 
-    //             he found a passion for making his own drinks. He took this and combined it with his other passion for computer
-    //             science in order to create this site to help others discover a love for cocktail making.
-    //             <br/><br/>
-    //             Favorite bar: Laka Lono Rum Club, Omaha<br/>
-    //             Favorite drink: Mai Tai
-    //         </p> */}
-    //     </div>
-    // )
 }
 
 export default About

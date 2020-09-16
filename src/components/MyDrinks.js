@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import DrinkForm from './DrinkForm'
 import Drink from './Drink'
 import drinkService from '../services/drinksServ'
+import Notification from './Notification'
 
 //css
 import Container from '@material-ui/core/Container'
@@ -26,6 +27,8 @@ const MyDrinks = () => {
     const [drinks, setDrinks] = useState([])
     const [showAdd, setShowAdd] = useState(false)
     const [buttonText, setButtonText] = useState('Add New')
+    const [message, setMessage] = useState(null)
+    const [severity, setSeverity] = useState(null)
 
     const classes = useStyles()
 
@@ -37,9 +40,10 @@ const MyDrinks = () => {
         try {
             const drink = await drinkService.create(drinkObject)
             setDrinks(drinks.concat(drink))
+            handleNotifications('Drink Added', 'success')
         }
         catch (exception) {
-            console.log(exception)
+            handleNotifications('Failed to add drink', 'error')
         }
     }
 
@@ -47,9 +51,10 @@ const MyDrinks = () => {
         try {
             await drinkService.remove(drinkObject.id)
             setDrinks(drinks.filter(drink => drink.id !== drinkObject.id))
+            handleNotifications('Drink Removed', 'success')
         }
         catch(exception) {
-            console.log(exception)
+            handleNotifications('Failed to remove drink', 'error')
         }
     }
 
@@ -64,9 +69,21 @@ const MyDrinks = () => {
         }
     }
 
+    const handleNotifications = (messageIn, severityIn) => {
+        console.log(messageIn)
+        setSeverity(severityIn)
+        setMessage(messageIn)
+    
+        setTimeout(() => {
+            setMessage(null)
+            setSeverity(null)
+        }, 6000)
+    }
+
     return (
         <Container maxWidth="lg">
             <CssBaseline />
+            <Notification message={message} type={severity}/>
             <Typography align="center" variant="h4" className={classes.title}>
                 My Drinks
             </Typography>
@@ -84,19 +101,6 @@ const MyDrinks = () => {
             
         </Container>
     )
-
-    // return (
-    //     <div>
-    //         <div>
-    //             <h1>My Drinks</h1>
-    //             <input type="button" value={buttonText} onClick={changeView} />
-    //             {showAdd && <DrinkForm createDrink={addDrink}/>}
-    //             {drinks.map(drink => 
-    //                 <Drink key={drink.id} drink={drink} removeDrink={removeDrink}/> 
-    //             )}
-    //         </div>
-    //     </div>
-    // )
 }
 
 export default MyDrinks

@@ -1,3 +1,7 @@
+/*
+* Launching point for application.
+*/
+
 import React, { useState, useEffect } from 'react'
 import {BrowserRouter as Router, Switch, Route} from 'react-router-dom'
 
@@ -9,10 +13,18 @@ import MyDrinks from './components/MyDrinks'
 import Login from './components/Login'
 import Signup from './components/Signup'
 import drinksService from './services/drinksServ'
+import {makeStyles} from '@material-ui/core'
 
-import './css/app.css'
+const useStyles = makeStyles((theme) => ({
+    backgroundApp: {
+        minHeight: '100vh',
+        backgroundImage: 'linear-gradient(120deg, #fdfbfb 0%, #ebedee 100%)'
+    }
+  }))
 
 const App = () => {
+
+    const classes = useStyles()
 
     const [user, setUser] = useState(null)
 
@@ -26,7 +38,7 @@ const App = () => {
     }, [])
 
     return (
-        <div className="App">
+        <div className={classes.backgroundApp}>
             <Router>
                 <Menu auth={user} setAuth={setUser}/>
                 <Switch>

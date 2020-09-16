@@ -1,3 +1,9 @@
+/*
+* Menu component displays menu for navigating around application.
+* Auth- user object that contains information about the user.
+* setAuth- function to set information about the user or remove it. 
+*/
+
 import React from 'react'
 //import { Link } from 'react-router-dom'
 
@@ -96,17 +102,6 @@ const Menu = ( {auth, setAuth} ) => {
                 </AppBar>}
         </>
     )
-
-    // return (
-    //     <div>
-    //         <Link style={padding} to="/">Home</Link>
-    //         {auth && <Link style={padding} to="/myDrinks">My Drinks</Link>}
-    //         <Link style={padding} to="/about">About</Link>
-    //         {!auth && <Link style={padding} to="/signin">Sign in</Link>}
-    //         {!auth && <Link style={padding} to="/signup">Sign up</Link>}
-    //         {auth && <Link style={padding} to="/" onClick={logout}>Log out</Link>}
-    //     </div>
-    // )
 }
 
 export default Menu

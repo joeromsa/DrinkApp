@@ -1,3 +1,8 @@
+/*
+* DrinkForm component collects information about custom drinks and submits it with a function given to it.
+* createDrink- function to submit form to server. 
+*/
+
 import React, { useState } from 'react'
 
 // css
@@ -71,7 +76,6 @@ const DrinkForm = ({createDrink}) => {
 
     const handleIngChange = (e) => {
         const updatedIng = [...ingredients]
-       // console.log(e.target.className.split(" ").filter(word => word !== 'MuiInputBase-input' && word !== 'MuiInput-input')[0])
         updatedIng[e.target.dataset.idx][e.target.className.split(" ").filter(word => word !== 'MuiInputBase-input' && word !== 'MuiInput-input')[0]] = e.target.value
         setIngredients(updatedIng)
     }
@@ -97,11 +101,16 @@ const DrinkForm = ({createDrink}) => {
         fd.append('glassware', drink.glassware[0])
         fd.append('description', drink.description[0])
         fd.append('ingredients', JSON.stringify(ingredients))
-        fd.append('drinkImage', file, file.name)
+        
+        if (file !== null) {
+            fd.append('drinkImage', file, file.name)
+        }
+        
         createDrink(fd)
         setIngredients([ {...blankIng} ])
         setDrink({ name: '',  glassware: '', description: '',})
         setFile('')
+        setSuccess(false)
     }
     return (
         <Container maxWidth="lg" className={classes.layout}>
@@ -154,14 +163,6 @@ const DrinkForm = ({createDrink}) => {
                             {success ? <CheckIcon /> : <PhotoCamera />}
                         </IconButton>
                     </label>
-
-
-                    
-                    {/* <label htmlFor="drinkImage">
-                        <IconButton color="primary" aria-label="upload picture" component="span">
-                            <PhotoCamera />
-                        </IconButton>
-                    </label> */}
                     <Container align="center">
                          <IconButton color="primary" aria-label="add ingredient" component="span" onClick={addIng} className={classes.add}>
                             <Add />
@@ -218,55 +219,5 @@ const DrinkForm = ({createDrink}) => {
             </Paper>
         </Container>
     )
-
-
-    // return (
-    //     <div>
-    //         <h1>Create New Drink</h1>
-    //         <form onSubmit={addDrink}>
-    //             <label htmlFor="name">Name</label>
-    //             <input type="text" name="name" id="name" value={drink.name} onChange={handleDrinkChange}/>
-    //             <label htmlFor="glassware">Glassware</label>
-    //             <input type="text" name="glassware" id="glassware" value={drink.glassware} onChange={handleDrinkChange}/>
-    //             <label htmlFor="description">Description</label>
-    //             <input type="text" name="description" id="description" value={drink.description} onChange={handleDrinkChange} />
-    //             <label htmlFor="drinkImage">Drink Image</label>
-    //             <input type="file" name="drinkImage" id="drinkImage" onChange={fileSelctedHandler}/>
-    //             <input type="button" value="Add New Ingredient" onClick={addIng}/>
-    //             {
-    //                 ingredients.map((val, idx) => {
-    //                     const quantId = `quantity-${idx}`
-    //                     const ingId = `ingredient-${idx}`
-    //                     return (
-    //                         <div key={`entry-${idx}`}>
-    //                             <label htmlFor={quantId}>Quantity</label>
-    //                             <input
-    //                                 type="text"
-    //                                 name={quantId}
-    //                                 data-idx={idx}
-    //                                 id={quantId}
-    //                                 className="quantity"
-    //                                 value={ingredients[idx].quantity}
-    //                                 onChange={handleIngChange}
-    //                             />
-    //                             <label htmlFor={ingId}>Ingredient</label>
-    //                             <input
-    //                                 type="text"
-    //                                 name={ingId}
-    //                                 data-idx={idx}
-    //                                 id={ingId}
-    //                                 className="ingredient"
-    //                                 value={ingredients[idx].ingredient}
-    //                                 onChange={handleIngChange}
-    //                             />
-    //                             <input type="button" value="Remove" onClick={() => removeEntry(idx)}/>
-    //                         </div>
-    //                     )
-    //                 })
-    //             }
-    //             <input type="submit" value="Submit" />
-    //         </form>
-    //     </div>
-    // )
 }
 export default DrinkForm

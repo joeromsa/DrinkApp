@@ -1,3 +1,9 @@
+/*
+* Drink component displays information about drinks added by the user.
+* drink- object that contains data about a drink.
+* removeDrink- function to remove a drink from a list. 
+*/
+
 import React from 'react'
 import CustomIngredients from './CustomIngredients'
 
@@ -34,7 +40,7 @@ const useStyles = makeStyles((theme) => ({
   }))
 
 const Drink = ({drink, removeDrink}) => {
-    const imgSource = `http://localhost:3001/${drink.drinkImage}`
+    const imgSource = `http://localhost:3001/${drink.drinkImage}` //change on prod.
 
     const classes = useStyles()
 
@@ -64,18 +70,6 @@ const Drink = ({drink, removeDrink}) => {
             </Container>
         </>
     )
-
-    // return (
-    //     <div id="drinkEntry">
-    //         {drink.name} <br/>
-    //         {drink.glassware} <br/>
-    //         {drink.description} <br/>
-    //         <CustomIngredients item={drink}/>
-    //         <img src={imgSource} alt="drink" />
-    //         <input type="button" value="Remove" onClick={drinkDeletus}/>
-    //         <br/>
-    //     </div>
-    // )
 }
 
 export default Drink

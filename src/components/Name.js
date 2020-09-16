@@ -1,3 +1,8 @@
+/*
+* Name component displays information about a drink.
+* item- object that contains information about a drink. 
+*/
+
 import React from 'react'
 import Ingredients from './Ingredients'
 

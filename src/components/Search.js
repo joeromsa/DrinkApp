@@ -1,3 +1,7 @@
+/*
+* Search component searches for drinks from the drink db.
+*/
+
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 

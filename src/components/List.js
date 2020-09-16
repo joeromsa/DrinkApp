@@ -1,3 +1,8 @@
+/*
+* List component displays the results returned from the api.
+* results- list of results from the api.
+*/
+
 import React from 'react'
 
 // componets

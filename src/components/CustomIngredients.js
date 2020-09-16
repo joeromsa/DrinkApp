@@ -1,3 +1,8 @@
+/*
+* CustomIngredients component used to display ingredients returned from server.
+* item- object that contains data for a drink.
+*/
+
 import React from 'react'
 
 //css
@@ -22,14 +27,6 @@ const CustomIngredients = ({item}) => {
             </ListItem>)}
         </List>
     )
-
-    // return (
-    //     <ul>{item.ingredients.map(ingredient => 
-    //         <li key={ingredient.ingredient}>
-    //             {ingredient.quantity} {ingredient.ingredient}
-    //         </li>)}
-    //     </ul>
-    // )
 }
 
 export default CustomIngredients

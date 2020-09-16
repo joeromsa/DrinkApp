@@ -1,3 +1,8 @@
+/*
+* Ingredients component displays the ingredients of a drink.
+* item- object that contains data about a drink.
+*/
+
 import React from 'react'
 import combineArrs from '../utils/arrayHandle'
 
@@ -17,6 +22,8 @@ const Ingredients = ({item}) => {
     
     const classes = useStyles()
 
+    // function to combine the ingredient and measurements arrays returned from the api into
+    // a single array that is easier to work with.
     const addIng = () => {
         let ingredients = []
         let measurements = []
@@ -48,14 +55,6 @@ const Ingredients = ({item}) => {
             </ListItem>)}
         </List>
     )
-
-    // return (
-    //     <ul>{ingAndMes.map(ingredient => 
-    //         <li key={ingredient}>
-    //             {ingredient}
-    //         </li>)}
-    //     </ul>
-    // )
 }
 
 export default Ingredients

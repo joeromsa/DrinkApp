@@ -1,3 +1,8 @@
+/*
+* Signup comonenet used to create a new user account.
+* setUser- function used to set user information. 
+*/
+
 import React, { useState } from 'react'
 import userService from '../services/userServ'
 import loginService from '../services/loginServ'
@@ -126,27 +131,6 @@ const Signup = ({setUser}) => {
             </div>
         </Container>
     )
-
-    // return (
-    //     <div>
-    //         <h1>Sign Up</h1>
-    //         <form onSubmit={handleSignUp}>
-    //             <div>
-    //                 Name
-    //                 <input type="text" value={name} name="Name" onChange={({target}) => setName(target.value)}/>
-    //             </div>
-    //             <div>
-    //                 Username
-    //                 <input type="text" value={username} name="Username" onChange={({target}) => setUsername(target.value)}/>
-    //             </div>
-    //             <div>
-    //                 Password
-    //                 <input type="password" value={password} name="Password" onChange={({target}) => setPassword(target.value)}/>
-    //             </div>
-    //             <button type="sumbit">login</button>
-    //         </form>
-    //     </div>
-    // )
-    }
+}
 
 export default Signup
