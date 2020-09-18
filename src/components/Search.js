@@ -11,8 +11,13 @@ import List from './List'
 // css
 import TextField from '@material-ui/core/TextField'
 import {makeStyles} from '@material-ui/core'
-import CssBaseLine from '@material-ui/core/CssBaseline'
+import CssBaseline from '@material-ui/core/CssBaseline'
 import Container from '@material-ui/core/Container'
+
+import InputAdornment from '@material-ui/core/InputAdornment'
+import IconButton from '@material-ui/core/IconButton'
+import SearchIcon from '@material-ui/icons/Search'
+import OutlinedInput from '@material-ui/core/OutlinedInput'
 
 const useStyles = makeStyles((theme) => ({
     textfield: {
@@ -30,46 +35,91 @@ const Search = () => {
     const [searchTerm, setSearchTerm] = useState('')
     const [searchResults, setSearchResults] = useState([])
     const [drinks, setDrinks] = useState([])
+    const [searchValue, setSearchValue] = useState('')
 
     const classes = useStyles()
 
-    useEffect(() => {
-        if (searchTerm.length === 1) 
+    // useEffect(() => {
+    //     if (searchTerm.length === 1) 
+    //     {
+    //         axios.get(`https://www.thecocktaildb.com/api/json/v1/1/search.php?f=${searchTerm}`)
+    //         .then(response => {
+    //             setDrinks(response.data.drinks)
+    //         }) 
+    //     }
+    // }, [searchTerm])
+
+    // const handleChange = event => {
+    //     setSearchTerm(event.target.value)
+    // } 
+
+    // useEffect(() => {
+    //     const results = drinks.filter(drink => 
+    //         drink.strDrink.toLowerCase().includes(searchTerm))
+    //         setSearchResults(results)
+    // }, [searchTerm, drinks])
+
+    // useEffect(() => {
+    //     if (searchTerm.length === 0) {
+    //         setSearchResults([])
+    //     }
+    // }, [searchTerm])
+
+    const searchTerms = (event) => {
+        event.preventDefault()
+        //setSearchTerm(searchValue.charAt(0))
+
+        if (searchValue.length >= 1) 
         {
-            axios.get(`https://www.thecocktaildb.com/api/json/v1/1/search.php?f=${searchTerm}`)
+            axios.get(`https://www.thecocktaildb.com/api/json/v1/1/search.php?f=${searchValue.charAt(0)}`)
             .then(response => {
                 setDrinks(response.data.drinks)
             }) 
-        }
-    }, [searchTerm])
 
-    const handleChange = event => {
-        setSearchTerm(event.target.value)
-    } 
-
-    useEffect(() => {
-        const results = drinks.filter(drink => 
-            drink.strDrink.toLowerCase().includes(searchTerm))
+            const results = drinks.filter(drink => 
+                drink.strDrink.toLowerCase().includes(searchValue))
             setSearchResults(results)
-    }, [searchTerm, drinks])
-
-    useEffect(() => {
-        if (searchTerm.length === 0) {
-            setSearchResults([])
         }
-    }, [searchTerm])
+    }
+
+    const handleSearchTerm = (e) => setSearchValue(e.target.value)
 
     return (
         <Container component="main" maxWidth="lg">
-            <CssBaseLine/>
-            
+            <CssBaseline />
             <div className={classes.paper}>
                 <h1>Search Drinks</h1>
-                <TextField value={searchTerm} onChange={handleChange} variant="outlined" label="Search Drink" className={classes.textfield} />
+                <form onSubmit={searchTerms}>
+                    <OutlinedInput 
+                        className={classes.textfield}
+                        placeholder="Search Drink"
+                        value={searchValue}
+                        onChange={handleSearchTerm}
+                        endAdornment={
+                            <InputAdornment position="end">
+                                <IconButton type="submit" aria-label="search">
+                                    <SearchIcon/>
+                                </IconButton>
+                            </InputAdornment>
+                        }
+                    />
+                </form>
             </div>
             <List results={searchResults}/>
         </Container>
     )
+
+    // return (
+    //     <Container component="main" maxWidth="lg">
+    //         <CssBaseline/>
+            
+    //         <div className={classes.paper}>
+    //             <h1>Search Drinks</h1>
+    //             <TextField value={searchTerm} onChange={handleChange} variant="outlined" label="Search Drink" className={classes.textfield} />
+    //         </div>
+    //         <List results={searchResults}/>
+    //     </Container>
+    // )
 }
 
 export default Search
