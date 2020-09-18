@@ -15,6 +15,7 @@ import Avatar from '@material-ui/core/Avatar'
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined'
 import TextField from '@material-ui/core/TextField'
 import Link from '@material-ui/core/Link'
+import Alert from '@material-ui/lab/Alert'
 
 const useStyles = makeStyles((theme) => ({
     paper: {
@@ -34,11 +35,15 @@ const useStyles = makeStyles((theme) => ({
     submit: {
       margin: theme.spacing(3, 0, 2),
     },
+    error: {
+        marginTop: '5%'
+    }
   }))
 
 const Login = ({setUser}) => {
     const [username, setUsername] = useState('')
     const [password, setPassword] = useState('')
+    const [incorrectPass, setInccorrectPass] = useState(false)
 
     const classes = useStyles()
 
@@ -50,10 +55,11 @@ const Login = ({setUser}) => {
             setPassword('')
             window.localStorage.setItem('loggedDrinkAppUser', JSON.stringify(user))
             drinksService.setToken(user.token)
+            setInccorrectPass(false)
             setUser(user)
         }
         catch (exception) {
-            console.log('wrong credentials')
+            setInccorrectPass(true)
         }
     }
 
@@ -67,6 +73,7 @@ const Login = ({setUser}) => {
                 <Typography component="h1" variant="h5">
                     Sign in
                 </Typography>
+                {incorrectPass && <Alert className={classes.error} severity="error" onClose={() => setInccorrectPass(false)}>Incorrect username or password.</Alert>}
                 <form className={classes.form} noValidate onSubmit={handleLogin}>
                     <TextField
                         variant="outlined"
