@@ -28,7 +28,7 @@ const useStyles = makeStyles((theme) => ({
 const List = ({results}) => {
     const classes = useStyles()
     
-    console.log(results)
+    //console.log(results)
 
     if (results === null || results === '') {
         return <p></p>

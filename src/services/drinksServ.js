@@ -10,6 +10,7 @@ let token = null
 // creates token to use in header.
 const setToken = newToken => {
     token = `bearer ${newToken}`
+    console.log(token)
 }
 
 // requests all drinks from the database.

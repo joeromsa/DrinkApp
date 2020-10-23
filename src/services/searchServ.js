@@ -1,7 +1,9 @@
 import axios from 'axios'
+const baseUrl = 'http://localhost:3001/api/drinkSearch'
 
 const getDrinks = async searchVal => {
-    const request = await axios.get(`https://www.thecocktaildb.com/api/json/v1/1/search.php?s=${searchVal}`)
+
+    const request = await axios.get(`${baseUrl}/${searchVal}`)
     return request.data
 }
 

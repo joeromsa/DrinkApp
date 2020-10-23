@@ -9,7 +9,6 @@ import searchService from '../services/searchServ'
 import List from './List'
 
 // css
-import TextField from '@material-ui/core/TextField'
 import {makeStyles} from '@material-ui/core'
 import CssBaseline from '@material-ui/core/CssBaseline'
 import Container from '@material-ui/core/Container'
