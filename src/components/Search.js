@@ -31,66 +31,8 @@ const useStyles = makeStyles((theme) => ({
   }))
 
 const Search = () => {
-    // const [searchTerm, setSearchTerm] = useState('')
-    // const [searchResults, setSearchResults] = useState([])
-    // const [drinks, setDrinks] = useState([])
-    // const [searchValue, setSearchValue] = useState('')
 
     const classes = useStyles()
-
-    // useEffect(() => {
-    //     if (searchTerm.length === 1) 
-    //     {
-    //         axios.get(`https://www.thecocktaildb.com/api/json/v1/1/search.php?f=${searchTerm}`)
-    //         .then(response => {
-    //             setDrinks(response.data.drinks)
-    //         }) 
-    //     }
-    // }, [searchTerm])
-
-    // const handleChange = event => {
-    //     setSearchTerm(event.target.value)
-    // } 
-
-    // useEffect(() => {
-    //     const results = drinks.filter(drink => 
-    //         drink.strDrink.toLowerCase().includes(searchTerm))
-    //         setSearchResults(results)
-    // }, [searchTerm, drinks])
-
-    // useEffect(() => {
-    //     if (searchTerm.length === 0) {
-    //         setSearchResults([])
-    //     }
-    // }, [searchTerm])
-
-    // const searchTerms = (event) => {
-    //     event.preventDefault()
-    //     console.log('function called')
-    //     console.log(searchValue)
-
-    //     if (searchValue.length >= 1) 
-    //     {
-    //         axios.get(`https://www.thecocktaildb.com/api/json/v1/1/search.php?f=${searchValue.charAt(0)}`)
-    //         .then(response => {
-    //             console.log(response)
-    //             setDrinks(response.data.drinks)
-    //             console.log(drinks)
-    //         })
-            
-    //         console.log(drinks)
-
-    //         const results = drinks.filter(drink => 
-    //             drink.strDrink.toLowerCase().includes(searchValue))
-    //         setSearchResults(results)
-            
-    //         console.log(results)
-    //         console.log(searchResults)
-    //     }
-    // }
-
-    // const handleSearchTerm = (e) => setSearchValue(e.target.value)
-
     const [drinks, setDrinks] = useState([])
     const [search, setSearch] = useState("")
     const [query, setQuery] = useState("null")
@@ -144,43 +86,6 @@ const Search = () => {
             <List results={drinks}/>
         </Container>
     )
-
-    // return (
-    //     <Container component="main" maxWidth="lg">
-    //         <CssBaseline />
-    //         <div className={classes.paper}>
-    //             <h1>Search Drinks</h1>
-    //             <form onSubmit={searchTerms} className={classes.textfield}>
-    //                 <OutlinedInput 
-    //                     className={classes.textfield}
-    //                     placeholder="Search Drink"
-    //                     value={searchValue}
-    //                     onChange={handleSearchTerm}
-    //                     endAdornment={
-    //                         <InputAdornment position="end">
-    //                             <IconButton type="submit" aria-label="search">
-    //                                 <SearchIcon/>
-    //                             </IconButton>
-    //                         </InputAdornment>
-    //                     }
-    //                 />
-    //             </form>
-    //         </div>
-    //         <List results={searchResults}/>
-    //     </Container>
-    // )
-
-    // return (
-    //     <Container component="main" maxWidth="lg">
-    //         <CssBaseline/>
-            
-    //         <div className={classes.paper}>
-    //             <h1>Search Drinks</h1>
-    //             <TextField value={searchTerm} onChange={handleChange} variant="outlined" label="Search Drink" className={classes.textfield} />
-    //         </div>
-    //         <List results={searchResults}/>
-    //     </Container>
-    // )
 }
 
 export default Search
