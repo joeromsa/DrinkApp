@@ -6,12 +6,12 @@ import React, { useState, useEffect } from 'react'
 import {BrowserRouter as Router, Switch, Route} from 'react-router-dom'
 
 //components
-import About from './components/About'
-import Menu from './components/Menu'
-import Search from './components/Search'
-import MyDrinks from './components/MyDrinks'
-import Login from './components/Login'
-import Signup from './components/Signup'
+import About from './components/base/About'
+import Menu from './components/base/Menu'
+import Search from './components/search/Search'
+import MyDrinks from './components/drinks/MyDrinks'
+import Login from './components/users/Login'
+import Signup from './components/users/Signup'
 import drinksService from './services/drinksServ'
 import {makeStyles} from '@material-ui/core'
 

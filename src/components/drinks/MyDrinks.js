@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react'
 import DrinkForm from './DrinkForm'
 import Drink from './Drink'
-import drinkService from '../services/drinksServ'
-import Notification from './Notification'
+import drinkService from '../../services/drinksServ'
+import Notification from '../base/Notification'
 
 //css
 import Container from '@material-ui/core/Container'

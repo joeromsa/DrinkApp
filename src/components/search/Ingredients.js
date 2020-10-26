@@ -4,7 +4,7 @@
 */
 
 import React from 'react'
-import combineArrs from '../utils/arrayHandle'
+import combineArrs from '../../utils/arrayHandle'
 
 //css
 import List from '@material-ui/core/List'

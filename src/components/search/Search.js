@@ -3,7 +3,7 @@
 */
 
 import React, { useState, useEffect } from 'react'
-import searchService from '../services/searchServ'
+import searchService from '../../services/searchServ'
 
 // componets
 import List from './List'

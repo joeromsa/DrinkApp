@@ -4,9 +4,9 @@
 */
 
 import React, { useState } from 'react'
-import userService from '../services/userServ'
-import loginService from '../services/loginServ'
-import drinksService from '../services/drinksServ'
+import userService from '../../services/userServ'
+import loginService from '../../services/loginServ'
+import drinksService from '../../services/drinksServ'
 
 // style
 import { makeStyles } from '@material-ui/core/styles'

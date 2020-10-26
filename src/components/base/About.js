@@ -52,7 +52,7 @@ const About = () => {
 
     return (
         <Container maxWidth="lg">
-            <img src={require('../assets/drinksMult.png')} alt="drinks" className={classes.image} />
+            <img src={require('../../assets/drinksMult.png')} alt="drinks" className={classes.image} />
             <Typography variant="h4" align="center" className={classes.title}>
                 About Drink App
             </Typography>
